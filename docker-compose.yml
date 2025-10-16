@@ -51,25 +51,9 @@ services:
     networks:
       - backend
 
-  jenkins:
-    image: jenkins/jenkins:lts-jdk17
-    container_name: contacts_jenkins
-    user: root
-    environment:
-      JENKINS_OPTS: "--httpPort=${JENKINS_PORT}"
-    ports:
-      - "${JENKINS_PORT}:${JENKINS_PORT}"
-    volumes:
-      - jenkins_home:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./Jenkinsfile:/var/jenkins_home/workspace-template/Jenkinsfile:ro
-    networks:
-      - backend
-
 volumes:
   pgdata:
   web_static:
-  jenkins_home:
 
 networks:
   backend:
