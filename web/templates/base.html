@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contacts</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <style>
+    body { max-width: 980px; margin: 2rem auto; }
+    .flash { padding: .6rem 1rem; border-radius: 8px; margin-bottom: 1rem; }
+    .error { background: #ffe5e5; }
+  </style>
+</head>
+<body>
+  <main>
+    <nav>
+      <ul>
+        <li><strong>Contacts</strong></li>
+      </ul>
+      <ul>
+        <li><a href="/">Create</a></li>
+        <li><a href="/people">People</a></li>
+      </ul>
+    </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

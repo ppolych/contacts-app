@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Create contact</h2>
+  <form method="post" action="/create">
+    <div class="grid">
+      <label>Name
+        <input type="text" name="name" required />
+      </label>
+      <label>Surname
+        <input type="text" name="surname" required />
+      </label>
+    </div>
+    <label>Email
+      <input type="email" name="email" required />
+    </label>
+    <label>Address
+      <input type="text" name="address" />
+    </label>
+    <label>Mobile
+      <input type="text" name="mobile" />
+    </label>
+    <button type="submit">Save</button>
+  </form>
+{% endblock %}

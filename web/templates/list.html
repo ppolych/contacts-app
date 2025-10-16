@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>People</h2>
+  <form method="get" action="/people">
+    <input type="search" name="q" placeholder="Search by any field..." value="{{ q }}" />
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Mobile</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in people %}
+      <tr>
+        <td>{{ p.id }}</td>
+        <td>{{ p.name }}</td>
+        <td>{{ p.surname }}</td>
+        <td>{{ p.email }}</td>
+        <td>{{ p.address }}</td>
+        <td>{{ p.mobile }}</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="6">No results.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
