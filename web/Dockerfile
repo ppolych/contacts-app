@@ -2,16 +2,18 @@
 FROM python:3.12-slim AS base
 
 # Install system deps for psycopg2 and build
-RUN apt-get update && apt-get install -y --no-install-recommends         build-essential libpq-dev      && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential libpq-dev \
+ && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-# Install python deps
-COPY web/requirements.txt /app/requirements.txt
+# Install python deps (paths relative to the build context ./web)
+COPY requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
-# Copy app
-COPY web/ /app/
+# Copy the application source (everything from ./web)
+COPY . /app/
 
 # Create non-root user
 RUN useradd -m appuser && chown -R appuser:appuser /app
